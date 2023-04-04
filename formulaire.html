@@ -11,55 +11,139 @@
 
 <body>
 <div class="uk-container">
-    <form class="uk-form-stacked" x-data="{ Container-Formulaire-Devenir-membre: 'membre', etape: 1 }">
-        <div class="uk-h3 uk-margin-top">Formulaire "Devenir membre" <em class="etape">(Etape <span x-text="etape")></span></em></div>
+    <form class="uk-form-stacked"
+          x-data="{ ContainerFormulaireDevenirMembre: 'choix', etape: 1, nombreEtapes: 2, ContainerRadioDevenirMembreCotisation: 'mensuelle' }">
+        <div class="uk-h3 uk-margin-top">Formulaire "Devenir membre" <em class="etape"> - Etape <span
+                x-text="etape"></span></em></div>
 
         <p class="uk-text-danger"><em>Les champs balisés d'un astérisque sont requis.</em></p>
         <!-- besoin que le label ait automatiquement une étoile si input required ? -->
 
         <div x-show="etape === 1">
-
             <div>
-
                 <div>
                     <div class="uk-margin">
-                        <label class="uk-form-label">Devenir membre</label>
+                        <label class="uk-form-label" x-model="ContainerFormulaireDevenirMembre">Devenir membre</label>
                         <div class="uk-form-controls">
-                            <select class="uk-select" name="titre" x-model="Container-Select-Devenir-membre"></select>>
-                                <option value="choix" cheked>- Faites votre choix -</option>
-                                <option value="passif">Passif</option>
-                                <option value="participatif">Participatif</option>
+                            <select class="uk-select" name="devenir-membre" x-model="ContainerFormulaireDevenirMembre">
+                                <option value="choix">- Faites votre choix -</option>
                                 <option value="actif">Actif</option>
+                                <option value="participatif">Participatif</option>
+                                <option value="passif">Passif</option>
                             </select>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
 
         <div x-show="etape === 2">
-
             <div>
+                <div class="uk-grid-small uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid>
+                    <div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Titre</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" name="titre">
+                                    <option value="choix">- Faites votre choix -</option>
+                                    <option value="monsieur">Monsieur</option>
+                                    <option value="madame">Madame</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Prénom *</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" name="prenom" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Nom *</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" name="nom" required/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Début de déclaration des champs devant être appelés dynamiquement -->
+                <div x-show="ContainerFormulaireDevenirMembre === 'actif'">
+                    <div>
+                        <div class="uk-margin">
+                            <div class="container-info">
+                                <p><strong>Actif</strong></p>
+                                <p>Le grand engagement: rentrez activement dans la dynamique associative et mettez vos
+                                    compétences et votre énergie au service de Papille-ON.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="ContainerFormulaireDevenirMembre === 'participatif'">
+                    <div>
+                        <div class="uk-margin">
+                            <div class="container-info">
+                                <p><strong>Participatif</strong></p>
+                                <p>Le petit engagement: participez en collaborant sur un projet déterminée, en vendant
+                                    des Dictionnaires alimentaire et/ou en communiquant pour Papille-ON.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="ContainerFormulaireDevenirMembre === 'passif'">
+                    <div>
+                        <div class="uk-margin">
+                            <p><strong>Passif</strong></p>
+                            <p>Engagez-vous dans Papille-ON en payant une cotisation annuelle ou mensuelle.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="uk-form-label" x-model="ContainerRadioDevenirMembreCotisation">Quelle est votre
+                            préférence de règlement de cotisation *
+                        </div>
+                        <div class="uk-form-controls">
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="mensuelle" checked>
+                                Mensuelle <span class="uk-text-lighter">(10.- / mois)</span></label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="annuelle"> Annuelle
+                                <span class="uk-text-lighter">(80.-/ an)</span></label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="autre"> Autre montant</label><br>
+                        </div>
+                    </div>
+
+                    <div x-show="ContainerFormulaireDevenirMembre === 'autre'">
+                        <div>
+                            <div class="uk-margin">
+                                <label class="uk-form-label">Autre montant *</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" type="text" name="autre-montant" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de déclaration des champs devant être appelés dynamiquement -->
 
                 <br/><br/>
-           
-                <button class="uk-button uk-margin-bottom" type="button" onclick="onSubmitForm()">Envoyer</button> 
 
+                <button class="uk-button button-submit uk-margin-bottom" type="button" onclick="onSubmitForm()">
+                    Envoyer
+                </button>
             </div>
-
         </div>
-
         <div class="uk-margin">
-            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" @click="etape = etape - 1">Précédent</button>
-            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" @click="etape = etape + 1">Suivant</button>
+            <button class="uk-button button-navigation uk-margin-bottom" type="button" x-show="etape > 1"
+                    @click="etape = etape - 1">Précédent
+            </button>
+            <button class="uk-button button-navigation uk-margin-bottom" type="button" x-show="etape < nombreEtapes"
+                    @click="etape = etape + 1">Suivant
+            </button>
         </div>
-
- 
-            
-    
-        
     </form>
 </div>
 
@@ -69,7 +153,7 @@
 <script>
     function onSubmitForm() {
         grecaptcha.ready(function () {
-            grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' }).then(function (token) {
+            grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {action: 'submit'}).then(function (token) {
                 // Add the token as a hidden input field to the form
                 const input = document.createElement('input');
                 input.type = 'hidden';
