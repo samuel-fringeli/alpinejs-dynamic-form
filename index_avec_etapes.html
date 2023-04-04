@@ -10,7 +10,7 @@
 
 <body>
 <div class="uk-container">
-    <form class="uk-form-stacked" x-data="{ containerMembrePartenaireSponsor: 'membre', etape: 1 }">
+    <form class="uk-form-stacked" x-data="{ containerMembrePartenaireSponsor: 'membre', etape: 1, nombreEtapes: 3 }">
         <div class="uk-text-lead uk-margin-top">Formulaire "Frontpage" - étape <span x-text="etape"></span></div>
         <div x-show="etape === 1">
             <div class="uk-margin">
@@ -113,8 +113,8 @@
             <button class="uk-button uk-button-primary uk-margin-bottom" type="button" onclick="onSubmitForm()">Envoyer</button>
         </div>
         <div class="uk-margin">
-            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" @click="etape = etape - 1">Précédent</button>
-            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" @click="etape = etape + 1">Suivant</button>
+            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" x-show="etape > 1" @click="etape = etape - 1">Précédent</button>
+            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" x-show="etape < nombreEtapes" @click="etape = etape + 1">Suivant</button>
         </div>
     </form>
 </div>
