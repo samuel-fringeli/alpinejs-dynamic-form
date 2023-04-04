@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire dynamique</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/css/uikit.min.css"/>
+    <link rel="stylesheet" href="formulaire.css"/>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeYVU0lAAAAALIIobEnkBYhnebQvgPhA6EMZuaG"></script>
+</head>
+
+<body>
+<div class="uk-container">
+    <form class="uk-form-stacked" x-data="{ Container-Formulaire-Devenir-membre: 'membre', etape: 1 }">
+        <div class="uk-h3 uk-margin-top">Formulaire "Devenir membre" <em class="etape">(Etape <span x-text="etape")></span></em></div>
+
+        <p class="uk-text-danger"><em>Les champs balisés d'un astérisque sont requis.</em></p>
+        <!-- besoin que le label ait automatiquement une étoile si input required ? -->
+
+        <div x-show="etape === 1">
+
+            <div>
+
+                <div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Devenir membre</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" name="titre" x-model="Container-Select-Devenir-membre"></select>>
+                                <option value="choix" cheked>- Faites votre choix -</option>
+                                <option value="passif">Passif</option>
+                                <option value="participatif">Participatif</option>
+                                <option value="actif">Actif</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div x-show="etape === 2">
+
+            <div>
+
+                <br/><br/>
+           
+                <button class="uk-button uk-margin-bottom" type="button" onclick="onSubmitForm()">Envoyer</button> 
+
+            </div>
+
+        </div>
+
+        <div class="uk-margin">
+            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" @click="etape = etape - 1">Précédent</button>
+            <button class="uk-button uk-button-primary uk-margin-bottom" type="button" @click="etape = etape + 1">Suivant</button>
+        </div>
+
+ 
+            
+    
+        
+    </form>
+</div>
+
+<script src="https://unpkg.com/alpinejs" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit-icons.min.js"></script>
+<script>
+    function onSubmitForm() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' }).then(function (token) {
+                // Add the token as a hidden input field to the form
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'g-recaptcha-response';
+                input.value = token;
+                document.querySelector('form').appendChild(input);
+
+                // Submit the form
+                document.querySelector('form').submit();
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
