@@ -13,7 +13,7 @@
 <div class="uk-container">
 
     <!-- Déclaration de tous les éléments devant être utilisés dynamiquement -->
-    <form class="uk-form-stacked" x-data="{ ContainerSelectDevenirMembre: 'choix', ContainerRadioDevenirMembreCotisation: 'mensuelle', ContainerRadioDevenirMembreCotisation: 'autre', etape: 1, nombreEtapes: 2 }">
+    <form class="uk-form-stacked" x-data="{ ContainerSelectDevenirMembre: 'choix', ContainerRadioDevenirMembreCotisation: 'mensuelle', etape: 1, nombreEtapes: 2 }">
         <div class="uk-h3 uk-margin-top">Formulaire "Devenir membre" <em class="etape"> - Etape <span x-text="etape"></span></em></div>
 
         <p><em><span class="uk-text-danger">Les champs balisés d'un astérisque sont requis.</span></em></p>
@@ -65,16 +65,16 @@
                 </div>
 
                 <div class="uk-margin">
-                    <div class="uk-form-label" x-model="ContainerRadioDevenirMembreCotisation">Quelle est votre préférence de règlement de cotisation *</div>
+                    <div class="uk-form-label">Quelle est votre préférence de règlement de cotisation *</div>
+
                     <div class="uk-form-controls">
-                        <label><input class="uk-radio" type="radio" name="type_membre" value="mensuelle" checked> Mensuelle <em>(10.- / mois)</em></label><br>
-                        <label><input class="uk-radio" type="radio" name="type_membre" value="annuelle"> Annuelle <em>(80.- / an)</em></label><br>
-                        <label><input class="uk-radio" type="radio" name="type_membre" value="autre"> Autre montant</label><br>
+                        <label><input class="uk-radio" type="radio" name="type_membre" x-model="ContainerRadioDevenirMembreCotisation" value="mensuelle" checked> Mensuelle <em>(10.- / mois)</em></label><br>
+                        <label><input class="uk-radio" type="radio" name="type_membre" x-model="ContainerRadioDevenirMembreCotisation" value="annuelle"> Annuelle <em>(80.- / an)</em></label><br>
+                        <label><input class="uk-radio" type="radio" name="type_membre" x-model="ContainerRadioDevenirMembreCotisation" value="autre"> Autre montant</label><br>
                     </div>
                 </div>
 
                 <div x-show="ContainerRadioDevenirMembreCotisation === 'autre'">
-
                     <div class="uk-margin">
                         <label class="uk-form-label">Autre montant *</label>
                         <div class="uk-form-controls">
