@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire - Faire un don / Devenir sponsor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/css/uikit.min.css"/>
+    <link rel="stylesheet" href="../00-general/formulaire.css"/>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeYVU0lAAAAALIIobEnkBYhnebQvgPhA6EMZuaG"></script>
+    <style>
+        .star::after {
+            content: " *";
+            color: #DE3E3E;
+        }
+    </style>
+</head>
+
+<body>
+<div class="uk-container">
+
+    <!-- Déclaration de tous les éléments devant être utilisés dynamiquement -->
+    <form class="uk-form-stacked" x-data="{ FormChoixB: 'B-0', FormChoixB1: 'B1-1', FormChoixB2: 'B2-1', FormChoixB3: 'B3-1', etape: 1, nombreEtapes: 2 }">
+        <div class="uk-h3 uk-margin-top">Formulaire "Faire un don / Devenir sponsor" <em class="etape"> - Etape <span x-text="etape"></span></em></div>
+
+        <p><em><span class="uk-text-danger">Les champs balisés d'un astérisque sont requis.</span></em></p>
+
+        <div x-show="etape === 1">
+
+            <div class="uk-card uk-card-default uk-card-body">
+
+                <div class="uk-margin">
+                    <p>Soutenez financièrement l'Association Papille-ON en faisant un don, en sponsorisant un événement ou en cotisant comme membre.</p>
+                </div><br>
+                
+                <div class="uk-margin">
+                    <label class="uk-form-label" x-model="FormChoixB">Que désirez-vous devenir ?</label>
+                    <div class="uk-form-controls">
+                        <select class="uk-select" name="devenir-membre" x-model="FormChoixB">
+                            <option value="B-0">- Faites votre choix -</option>
+                            <option value="B-1">Membre passif</option>
+                            <option value="B-2">Donateur</option>
+                            <option value="B-3">Sponsor</option>
+                        </select>
+                    </div>
+                </div>       
+
+                <!-- Début des déclarations de champs devant être appelés dynamiquement -->
+                <div x-show="FormChoixB === 'B-1'">
+                    
+                    <div class="uk-margin">
+                        <div class="container-info">
+                            <p><b>Descriptif :</b></p>
+                            <p>Engagez-vous dans Papille-ON en payant une cotisation annuelle ou mensuelle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="uk-margin">
+                        <div class="uk-form-label" x-model="FormChoixB1">Quelle est votre préférence de règlement de cotisation ?</div>
+                        <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid" x-model="FormChoixB1">
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B1-1" checked> Mensuelle <em>(CHF 10.- / mois)</em></label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B1-2"> Annuelle <em>(CHF 80.- / an)</em></label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B1-3"> Autre montant</label><br>
+                        </div>
+                    </div>
+
+                    <div x-show="FormChoixB1 === 'B1-3'">
+                        
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Autre montant *</label>
+                            <div class="uk-form-controls">
+                                <div>CHF &nbsp;&nbsp;<input class="uk-input uk-form-width-small" type="text" name="autre-montant"/></div>
+                            </div>
+                        </div>
+
+                        <p>Un grand merci pour votre soutien !</p>
+                        
+                    </div>
+
+                </div>
+
+                <div x-show="FormChoixB === 'B-2'">
+                    
+                    <div class="uk-margin">
+                        <div class="container-info">
+                            <p><b>Descriptif :</b></p>
+                            <p>Offrir un don unique, par TWINT, virement bancaire ou devenez même mécène de cette nouvelle Culture alimentaire.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="uk-margin">
+                        <div class="uk-form-label" x-model="FormChoixB2">Quel genre d'engagement désirez-vous ?</div>
+                        <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid" x-model="FormChoixB2">
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B2-1" checked> Versement TWINT</label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B2-2"> Versement bancaire</label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B2-3"> Mécénat</label><br>
+                        </div>
+                    </div>
+
+                    <div x-show="FormChoixB2 === 'B2-1'">
+                        
+                        <div class="uk-margin">
+                            <div class="uk-flex uk-text-center">
+                                <div class="uk-card uk-card-default uk-card-body">
+                                    <p><b>Scannez le code QR pour effectuer votre donation.</b></p>
+                                    <img data-src="../00-general/00-images/association-papille-on-code-qr-twint.png" uk-img="loading: eager"></img>
+                                    <p>Un grand merci pour votre soutien !</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="uk-form-label spacing-bottom">Options supplémentaires :</div>
+                            <div class="uk-form-controls">
+            
+                                <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
+            
+                                    <label><input class="uk-checkbox" type="checkbox" name="type_membre"> Demander un certificat de don <em>(à partir de CHF 150.-)</em></label> <br>
+                                    <label><input class="uk-checkbox" type="checkbox" name="type_membre"> Obtenir le statut de membre</label> <br>
+            
+                                </div>
+            
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="container-info-important">
+                                <p><b>Information :</b></p>
+                                <p>Si votre montant ne dépasse pas les <b>CHF 150.-</b> ou/et que <b>vous ne désirez pas obtenir un statut de membre</b>, vous pouvez <b>fermer le présent formulaire</b> !</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div x-show="FormChoixB2 === 'B2-2'">
+                        
+                        <div class="uk-margin">
+                            <div class="uk-flex uk-text-center">
+                                <div class="uk-card uk-card-default uk-card-body">
+                                    <p><b>Coordonnées bancaires :</b></p>
+                                    <p><strong>Association Papille-ON</strong><br>Route de Botterens 116<br>1652 Botterens</p><br>
+                                    <p><b>Banque Raiffeisen</b><br><b>IBAN:</b> &nbsp;CH58 8080 8002 9073 0090 8</p>
+                                    <p>Un grand merci pour votre soutien !</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="uk-form-label spacing-bottom">Options supplémentaires :</div>
+                            <div class="uk-form-controls">
+            
+                                <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
+            
+                                    <label><input class="uk-checkbox" type="checkbox" name="type_membre"> Demander un certificat de don <em>(à partir de CHF 150.-)</em></label> <br>
+                                    <label><input class="uk-checkbox" type="checkbox" name="type_membre"> Obtenir le statut de membre</label> <br>
+            
+                                </div>
+            
+                             </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="container-info-important">
+                                <p><b>Information :</b></p>
+                                <p>Si votre montant ne dépasse pas les <b>CHF 150.-</b> ou/et que <b>vous ne désirez pas obtenir un statut de membre</b>, vous pouvez <b>fermer le présent formulaire</b> !</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div x-show="FormChoixB2 === 'B2-3'">
+                        
+                        <div class="uk-margin">
+                            <div class="container-info-important">
+                                <p><b>Information :</b></p>
+                                <p>Remplissez la suite du formulaire <b>ou</b> contactez-nous directement<br>par téléphone au <a href="tel:+41 77 442 55 50"><b>+41 77 442 55 50</b></a> ou par mail à <a href="mailto:papille-on-project@protonmail.com"><b>papille-on-project@protonmail.com</b></a></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div x-show="FormChoixB === 'B-3'">
+                    
+                    <div class="uk-margin">
+                        <div class="container-info">
+                            <p><b>Descriptif :</b></p>
+                            <p>Soutenez un événement ou financez un projet de l'association en contre-partie d'une belle visibilité et d'une éternelle reconnaissance !</p>
+                        </div>
+                    </div>
+                    
+                    <div class="uk-margin">
+                        <div class="uk-form-label" x-model="FormChoixB3">Quel genre de sponsor désirez-vous être ?</div>
+                        <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid" x-model="FormChoixB3">
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B3-1" checked> Principal</label><br>
+                            <label><input class="uk-radio" type="radio" name="type_membre" value="B3-2"> Secondaire<br>
+                        </div>
+                    </div>
+
+                    <div x-show="FormChoixB3 === 'B3-1'">
+                        
+                        <div class="uk-margin">
+                            <div class="container-info">
+                                <p><b>Descriptif :</b></p>
+                                <p>Financez un projet et soyez assuré de toujours voir votre logo à côté du nôtre.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div x-show="FormChoixB3 === 'B3-2'">
+                        
+                        <div class="uk-margin">
+                            <div class="container-info">
+                                <p><b>Descriptif :</b></p>
+                                <p>Offrez les récompenses des challenges et événements Papille-ON <em>(produits artisanaux, alimentaires ou non, bons d'achat, etc.)</em>.<br>Comptez ensuite sur nous pour en faire une jolie promotion.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <!-- Fin des déclaratiosn de champs devant être appelés dynamiquement -->
+
+            </div>
+
+        </div>
+
+        <div x-show="etape === 2">
+
+            <div class="uk-card uk-card-default uk-card-body">
+            
+                <div class="uk-margin">
+                    <label class="uk-form-label">Organisation</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="text" placeholder="Entreprise / Organisation / Association" name="organisation"/>
+                    </div>
+                </div>
+
+                <div class="uk-grid-small uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid>
+
+                    <div>    
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Titre</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" name="titre">
+                                    <option value="choix">- Faites votre choix -</option>
+                                    <option value="monsieur">Monsieur</option>
+                                    <option value="madame">Madame</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label star">Prénom</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" name="prenom" required/>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div>         
+                        <div class="uk-margin">
+                            <label class="uk-form-label star">Nom</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" name="nom" required/>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div> 
+
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body">
+    
+                <div class="uk-margin">
+                    <label class="uk-form-label">Adresse</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="text" name="adresse"/>
+                    </div>
+                </div>
+                
+                
+                <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
+
+                    <div class="uk-width-auto@s">
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Code postal</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" name="code-postal"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="uk-width-expand@s">
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Ville</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" name="ville"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+    
+                <div class="uk-margin">
+                    <label class="uk-form-label">Pays</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="text" name="pays"/>
+                    </div>
+                </div>  
+
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body">
+            
+                <div class="uk-margin">
+                    <label class="uk-form-label">Téléphone</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="tel" name="telephone"/>
+                    </div>
+                </div>
+            
+                <div class="uk-margin">
+                    <label class="uk-form-label star">Email</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="email" name="email" required/>
+                    </div>
+                </div>
+                
+                <div class="uk-margin">
+                    <label class="uk-form-label">Site Web</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="Site Web" name="siteweb"/>
+                    </div>
+                </div>
+             
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body">
+          
+                <div class="uk-margin">
+                    <label class="uk-form-label">Message</label>
+                    <div class="uk-form-controls">
+                        <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                    </div>
+                </div>
+
+            </div> 
+
+            <br><br>
+
+            <div class="uk-text-center">
+
+                <button class="uk-button button-submit uk-margin-bottom" type="button" onclick="onSubmitForm()">Envoyer</button>
+
+            </div>
+            
+        </div>
+
+        <div class="uk-text-center">
+
+            <div class="uk-margin">
+                <button class="uk-button uk-button-small button-navigation uk-margin-bottom" type="button" x-show="etape > 1" @click="etape = etape - 1">Précédent</button>
+                <button class="uk-button uk-button-small button-navigation uk-margin-bottom" type="button" x-show="etape < nombreEtapes" @click="etape = etape + 1">Suivant</button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit-icons.min.js"></script>
+<script>
+    function onSubmitForm() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {action: 'submit'}).then(function (token) {
+                // Add the token as a hidden input field to the form
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'g-recaptcha-response';
+                input.value = token;
+                document.querySelector('form').appendChild(input);
+
+                // Submit the form
+                document.querySelector('form').submit();
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
