@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Réponse formulaire A</title>
+    <link rel="stylesheet" href="../00-general/formulaire.css"/>
+</head>
+<body>
+
 <?php
 
 // print_r($_POST);
@@ -70,3 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <br>En tant que membre <?= $membre ?>, ...
 <?php } ?>
+
+</body>
+</html>
