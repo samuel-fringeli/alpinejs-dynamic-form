@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
 
     <strong>Exemple de message :</strong>
-    <p>Bonjour <?= $titre ?> <?= $prenom ?> <?= $nom ?>,<br>
+    <p>Bonjour <?= $titre ?> <strong><?= $prenom ?> <?= $nom ?></strong>,<br>
     <?php if ($type_membre == 'A3-1') { ?>
         Merci d'avoir choisi de faire un don mensuel à notre association !
     <?php } if ($type_membre == 'A3-2') { ?>
