@@ -61,8 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <p>Bonjour <?= $titre ?> <?= $prenom ?> <?= $nom ?>,<br>
     <?php if ($type_membre == 'A3-1') { ?>
         Merci d'avoir choisi de faire un don mensuel à notre association !
-    <?php } ?>
-    <?php if ($type_membre == 'A3-2') { ?>
+    <?php } if ($type_membre == 'A3-2') { ?>
         Merci d'avoir choisi de faire un don annuel à notre association !
     <?php } ?>
     <?php if ($type_membre == 'A3-3') { ?>
