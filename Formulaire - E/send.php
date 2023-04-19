@@ -16,17 +16,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérerion des informations du formulaire
     $type_contribution = $_POST["type-contribution"];
     $type_retribution = $_POST["type-retribution"];
-    $langue_EG1a = isset($_POST["langue-EG1a"]);
-    $langue_EG1b = isset($_POST["langue-EG1b"]);
-    $langue_EG1c = isset($_POST["langue-EG1c"]);
-    $langue_EG1d = isset($_POST["langue-EG1d"]);
-    $langue_EG1e = isset($_POST["langue-EG1e"]);
-    $langue_EG1f = isset($_POST["langue-EG1f"]);
+    $langue_E1Ga = isset($_POST["langue-E1Ga"]);
+    $langue_E1Gb = isset($_POST["langue-E1Gb"]);
+    $langue_E1Gc = isset($_POST["langue-E1Gc"]);
+    $langue_E1Gd = isset($_POST["langue-E1Gd"]);
+    $langue_E1Ge = isset($_POST["langue-E1Ge"]);
+    $langue_E1Gf = isset($_POST["langue-E1Gf"]);
     $autres_langues = $_POST["autres-langues"];
     $type_collaboration = $_POST["type-collaboration"];
     $description_sujet = $_POST["description-sujet"];
     $remarques_suggestions = $_POST["remarques-suggestions"];
-    
+
 
     $organisation = $_POST["organisation"];
     $titre = $_POST["titre"];
@@ -78,22 +78,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $options_checked = array();
 
     if ($type_contribution === 'E-1') {
-        if ($langue_EG1a) {
+        if ($langue_E1Ga) {
             array_push($options_checked, 'Italien');
         }
-        if ($langue_EG1b) {
+        if ($langue_E1Gb) {
             array_push($options_checked, 'Anglais');
         }
-        if ($langue_EG1c) {
+        if ($langue_E1Gc) {
             array_push($options_checked, 'Espagnol');
         }
-        if ($langue_EG1d) {
+        if ($langue_E1Gd) {
             array_push($options_checked, 'Mandarin');
         }
-        if ($langue_EG1e) {
+        if ($langue_E1Ge) {
             array_push($options_checked, 'Russe');
         }
-        if ($langue_EG1f) {
+        if ($langue_E1Gf) {
             array_push($options_checked, 'Autre');
         }
     }
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php } ?><br>
 
             <!-- !!! A CONTROLER !!! -->
-            <?php if (($type_contribution == 'E-1') && ($langue_EG1f == 'EG1f')) { ?>
+            <?php if (($type_contribution == 'E-1') && ($langue_E1Gf == 'E1Gf')) { ?>
                 <b>Autre(s) langue(s):</b>&nbsp; &nbsp;<?= $autres_langues ?><br>
             <?php } ?>
 
@@ -174,9 +174,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if ($type_contribution == 'E-3') { ?>
                 <b>Remarques / Suggestions :</b><br><?= $remarques_suggestions ?><br>
             <?php } ?>
-             
+
         </div>
-       
+
         <div class="uk-card uk-card-default uk-card-body">
 
             <h4>Coordonnées :</h4>
@@ -205,11 +205,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>Avec nos meilleures salutations.<br />Valentin Pasquier<br /><br /></p>
             <img class="logo" src="../00-general/00-images/logo-association-papille-on-02-positif.png" uk-img="loading: eager"></img>
             <p>Route de Botterens 116 - CH 1652 Botterens<br />Tél.  : <a href="tel:+41 77 442 55 50">+41 77 442 55 50</a><br />www.papille-on.com&nbsp;&nbsp; Email : <a href="mailto:info@papille-on.com">info@papille-on.com</a></p>
-            
+
         </div>
 
 
     </div>
 
 
-<?php } ?> 
+<?php } ?>
