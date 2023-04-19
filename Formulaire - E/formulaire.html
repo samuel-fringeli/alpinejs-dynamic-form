@@ -19,7 +19,7 @@
 <div class="uk-container">
 
     <!-- Déclaration de tous les éléments devant être utilisés dynamiquement -->
-    <form class="uk-form-stacked" x-data="{ FormChoixE: 'E-0', FormChoixE1: 'E1-1', etape: 1, nombreEtapes: 2 }">
+    <form method="post" action="send.php" class="uk-form-stacked" x-data="{ FormChoixE: 'E-0', FormChoixE1: 'E1-1', etape: 1, nombreEtapes: 2 }">
         <div class="uk-h3 uk-margin-top">Formulaire "Enrichir notre Dictionnaire" <em class="etape"> - Etape <span x-text="etape"></span></em></div>
 
         <p><em><span class="uk-text-danger">Les champs balisés d'un astérisque sont requis.</span></em></p>
@@ -35,7 +35,7 @@
                 <div class="uk-margin">
                     <label class="uk-form-label" x-model="FormChoixE">Que désirez-vous ?</label>
                         <div class="uk-form-controls">
-                            <select class="uk-select" name="devenir-membre" x-model="FormChoixE">
+                            <select class="uk-select" name="type-contribution" x-model="FormChoixE">
                                 <option value="E-0">- Faites votre choix -</option>
                                 <option value="E-1">Proposer une traduction</option>
                                 <option value="E-2">Proposer / éditer un sujet manquant</option>
@@ -59,9 +59,9 @@
                     <div class="uk-margin">
                         <div class="uk-form-label">Quel genre de rétribution désirez-vous ?</div>
                         <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-radio" type="radio" name="type_membre" checked> Contre une rétribution financière</label><br>
-                            <label><input class="uk-radio" type="radio" name="type_membre"> Contre une rémunération sur les droits d'auteur <em>(en %)</em></label><br>
-                            <label><input class="uk-radio" type="radio" name="type_membre"> En devenant membre</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-retribution" value="E1-1" checked> Contre une rétribution financière</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-retribution" value="E1-2"> Contre une rémunération sur les droits d'auteur <em>(en %)</em></label><br>
+                            <label><input class="uk-radio" type="radio" name="type-retribution" value="E1-3"> En devenant membre</label><br>
                         </div>
                     </div><br>
 
@@ -71,24 +71,24 @@
     
                             <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
     
-                                <label><input class="uk-checkbox" type="checkbox" name="type-membre" value="E1-1"> Italien</label> <br>
-                                <label><input class="uk-checkbox" type="checkbox" name="type-membre" value="E1-2"> Anglais</label> <br>
-                                <label><input class="uk-checkbox" type="checkbox" name="type-membre" value="E1-3"> Espagnol</label> <br>
-                                <label><input class="uk-checkbox" type="checkbox" name="type-membre" value="E1-4"> Mandarin</label> <br>
-                                <label><input class="uk-checkbox" type="checkbox" name="type-membre" value="E1-5"> Russe</label> <br>
-                                <label><input class="uk-checkbox" type="checkbox" name="type-membre" value="E1-6"> Aurre</label> <br>
+                                <label><input class="uk-checkbox" type="checkbox" name="langue-E1Ga" value="E1Ga"> Italien</label> <br>
+                                <label><input class="uk-checkbox" type="checkbox" name="langue-E1Gb" value="E1Gb"> Anglais</label> <br>
+                                <label><input class="uk-checkbox" type="checkbox" name="langue-E1Gc" value="E1Gc"> Espagnol</label> <br>
+                                <label><input class="uk-checkbox" type="checkbox" name="langue-E1Gd" value="E1Gd"> Mandarin</label> <br>
+                                <label><input class="uk-checkbox" type="checkbox" name="langue-E1Ge" value="E1Ge"> Russe</label> <br>
+                                <label><input class="uk-checkbox" type="checkbox" name="langue-E1Gf" value="E1Gf"> Autre</label> <br>
     
                             </div>
     
                         </div>
                     </div>
 
-                    <div x-show="FormChoixE1 === 'E1-6'">
+                    <div x-show="FormChoixE1 === 'E1Gf'">
 
                         <div class="uk-margin">
                             <label class="uk-form-label">Veuillez précisez la ou les autres langue(s) :</label>
                             <div class="uk-form-controls">
-                                <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                                <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea" name="autres-langues"></textarea>
                             </div>
                         </div>
 
@@ -110,15 +110,15 @@
                     <div class="uk-margin">
                         <div class="uk-form-label">De quelle manière voulez-vous procéder ?</div>
                         <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-radio" type="radio" name="type_membre" checked> En collaboration avec Papille-ON</label><br>
-                            <label><input class="uk-radio" type="radio" name="type_membre"> En expliquant seulement le sujet</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-collaboration" value="E2-1" checked> En collaboration avec Papille-ON</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-collaboration" value="E2-2"> En expliquant seulement le sujet</label><br>
                         </div>
                     </div>
                     
                     <div class="uk-margin">
                         <label class="uk-form-label">Description du sujet :</label>
                         <div class="uk-form-controls">
-                            <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                            <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea" name="description-sujet"></textarea>
                         </div>
                     </div>  
                     
@@ -133,7 +133,7 @@
                     <div class="uk-margin">
                         <label class="uk-form-label">Remarques / Suggestions :</label>
                         <div class="uk-form-controls">
-                            <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                            <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea" name="remarques-suggestions"></textarea>
                         </div>
                     </div>
 
@@ -163,9 +163,9 @@
                             <label class="uk-form-label">Titre</label>
                             <div class="uk-form-controls">
                                 <select class="uk-select" name="titre">
-                                    <option value="choix">- Faites votre choix -</option>
-                                    <option value="monsieur">Monsieur</option>
-                                    <option value="madame">Madame</option>
+                                    <option value="">- Faites votre choix -</option>
+                                    <option value="Monsieur">Monsieur</option>
+                                    <option value="Madame">Madame</option>
                                 </select>
                             </div>
                         </div>
@@ -264,7 +264,7 @@
                 <div class="uk-margin">
                     <label class="uk-form-label">Message</label>
                     <div class="uk-form-controls">
-                        <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                        <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea" name="message"></textarea>
                     </div>
                 </div>
 
@@ -274,7 +274,7 @@
 
             <div class="uk-text-center">
 
-                <button class="uk-button button-submit uk-margin-bottom" type="button" onclick="onSubmitForm()">Envoyer</button>
+                <button class="uk-button button-submit uk-margin-bottom" type="submit" onclick="onSubmitForm()">Envoyer</button>
 
             </div>
             
