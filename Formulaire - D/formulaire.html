@@ -19,7 +19,7 @@
 <div class="uk-container">
 
     <!-- Déclaration de tous les éléments devant être utilisés dynamiquement -->
-    <form class="uk-form-stacked" x-data="{ FormChoixD: 'D-0', FormChoixD1: 'D1-1', FormChoixD2: 'D2-1', etape: 1, nombreEtapes: 2 }">
+    <form method="post" action="send.php" class="uk-form-stacked" x-data="{ FormChoixD: 'D-0', FormChoixD1: 'D1-1', FormChoixD2: 'D2-1', etape: 1, nombreEtapes: 2 }">
         <div class="uk-h3 uk-margin-top">Formulaire "Faire appel à nos services" <em class="etape"> - Etape <span x-text="etape"></span></em></div>
 
         <p><em><span class="uk-text-danger">Les champs balisés d'un astérisque sont requis.</span></em></p>
@@ -35,28 +35,28 @@
                 <div class="uk-margin">
                     <label class="uk-form-label" x-model="FormChoixD">Que désirez-vous ?</label>
                         <div class="uk-form-controls">
-                            <select class="uk-select" name="devenir-membre" x-model="FormChoixD">
+                            <select class="uk-select" name="type-service" x-model="FormChoixD">
                                 <option value="D-0">- Faites votre choix -</option>
                                 <option value="D-1">Suivre un cours / une formation</option>
                                 <option value="D-2">Réserver une animation / un atelier pédagogique</option>
                                 <option value="D-3">Nous inviter à un événement, une conférence ou pour une interview</option>
                             </select>
                         </div>
-                </div>       
+                </div>
 
                 <!-- Début des déclarations de champs devant être appelés dynamiquement -->
                 <div x-show="FormChoixD === 'D-1'">
 
-                    <div class="uk-margin"> 
-                        <p>Apprenez à vivre et transmettre cette Culture alimentaire durable grâce aux formations Papille-ON et aux cours de Savoirs alimentaire.</p>  
+                    <div class="uk-margin">
+                        <p>Apprenez à vivre et transmettre cette Culture alimentaire durable grâce aux formations Papille-ON et aux cours de Savoirs alimentaire.</p>
                     </div><br>
 
                     <div class="uk-margin">
                         <div class="uk-form-label" x-model="FormChoixD1">Quelle genre de cours / formation souhaitez-vous ?</div>
                         <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid" x-model="FormChoixD1">
-                            <label><input class="uk-radio" type="radio" name="type_membre" value="D1-1" checked> <b>Formation 1 :</b> pour duos de parents et enfants <em>(de 3 à 6 ans)</em></label><br>
-                            <label><input class="uk-radio" type="radio" name="type_membre" value="D1-2"> <b>Formation 2 :</b> pour jeunes et futurs parents</label><br>
-                            <label><input class="uk-radio" type="radio" name="type_membre" value="D1-3"> <b>Formation 3 :</b> pour enseignants</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-formation" value="D1-1" checked> <b>Formation 1 :</b> pour duos de parents et enfants <em>(de 3 à 6 ans)</em></label><br>
+                            <label><input class="uk-radio" type="radio" name="type-formation" value="D1-2"> <b>Formation 2 :</b> pour jeunes et futurs parents</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-formation" value="D1-3"> <b>Formation 3 :</b> pour enseignants</label><br>
                         </div>
                     </div>
 
@@ -65,31 +65,31 @@
                         <div class="uk-margin">
                             <div class="container-info">
                                 <p><b>Descriptif :</b></p>
-                                <p>Les cuisines sont pour les enfants de formidables plateformes pédagogiques des sens et des gestes.</p> 
+                                <p>Les cuisines sont pour les enfants de formidables plateformes pédagogiques des sens et des gestes.</p>
                                 <p>Apprenez les règles, les techniques et les astuces qui permettent d'intégrer vos enfants dans votre cuisine quotidienne et de développer ses sens, sa motricité et sa/votre confiance en lui.</p>
                             </div>
                         </div>
 
                         <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
 
-                            <div> 
-                                
+                            <div>
+                                <!-- VOIR POUR REMPLACER LE CHAMPS ”DATE” PAR CHAMPS DYNAMIQUE DE CHOIX DE DATES (CALENDRIER) -->
                                 <div class="uk-margin">
                                     <label class="uk-form-label">Quel jour souhaiteriez-vous participer à une formation ?</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" type="tel" name="date" placeholder="jj.mm.aaaaa"/>
+                                        <input class="uk-input" id="datepicker" type="text" name="date-formation-1" placeholder="jj.mm.aaaaa"/>
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div>
-                                <div class="uk-margin"> 
-                                    <a class="uk-button uk-button-small button-link uk-margin-bottom" href="https://www.papille-on.com/index.php/fr/culture-alimentaire-fr/formations-fr" target="blank" title="Liens vers notre liste des formations">Accédez à la liste de nos formations</a> 
+                                <div class="uk-margin">
+                                    <a class="uk-button uk-button-small button-link uk-margin-bottom" href="https://www.papille-on.com/index.php/fr/culture-alimentaire-fr/formations-fr" target="blank" title="Liens vers notre liste des formations">Accédez à la liste de nos formations</a>
                                 </div>
                             </div>
 
-                        </div>                        
+                        </div>
 
                     </div>
 
@@ -112,20 +112,20 @@
                         </div>
 
                     </div>
-   
+
                 </div>
 
                 <div x-show="FormChoixD === 'D-2'">
 
-                    <div class="uk-margin"> 
-                        <p>Découvrez nos <b>ateliers pédagogiques fixes ou mobiles</b> et <b>les possibilités d'animation</b>, pour une sortie de classe comme pour une sortie de boite.</p>  
+                    <div class="uk-margin">
+                        <p>Découvrez nos <b>ateliers pédagogiques fixes ou mobiles</b> et <b>les possibilités d'animation</b>, pour une sortie de classe comme pour une sortie de boite.</p>
                     </div><br>
-                    
+
                     <div class="uk-margin">
                         <div class="uk-form-label" x-model="FormChoixD2">Quel genre d'atelier souhaitez-vous ?</div>
                         <div class="uk-form-controls uk-margin uk-grid-small uk-child-width-auto uk-grid" x-model="FormChoixD2">
-                            <label><input class="uk-radio" type="radio" name="type_membre" value="D2-1" checked> Ateliers pédagogiques fixes</label><br>
-                            <label><input class="uk-radio" type="radio" name="type_membre" value="D2-2"> Animation / Ateliers pédagogiques mobiles</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-animation" value="D2-1" checked> Ateliers pédagogiques fixes</label><br>
+                            <label><input class="uk-radio" type="radio" name="type-animation" value="D2-2"> Animation / Ateliers pédagogiques mobiles</label><br>
                         </div>
                     </div>
 
@@ -143,14 +143,14 @@
                         <div class="container-info-important">
                             <p><b>Information :</b></p>
                             <p>Accédez à notre liste d'animations, <b>sans avoir besoin de remplir la suite du présent formulaire</b> et réservez l'atelier, directement auprès de l'organisation qui propose ce service.</p>
-                            
+
                             <div class="uk-text-center">
                                 <a class="uk-button uk-button-small button-link uk-margin-bottom" href="https://www.papille-on.com/index.php/fr/culture-alimentaire-fr/animations-fr" target="blank" title="Liens vers notre liste d'animations">Accédez à la liste de nos animations</a>
                             </div>
 
                         </div>
-                    </div>   
-                    
+                    </div>
+
                 </div>
 
                 <div x-show="FormChoixD2 === 'D2-2'">
@@ -158,11 +158,11 @@
                     <div class="uk-margin">
                         <div class="container-info">
                             <p><b>Descriptif :</b></p>
-                            <p>En dehors de nos rendez-vous avec le public dans les marchés, les festivals ou les foires, nous animons volontiers des événements privés <em>(contre rémunération)</em>.<br> 
+                            <p>En dehors de nos rendez-vous avec le public dans les marchés, les festivals ou les foires, nous animons volontiers des événements privés <em>(contre rémunération)</em>.<br>
                                 Réservez nos ateliers pédagogiques, notre matériel <em>(stand, Grimoire de la Survie alimentaire...)</em>, nos savoirs et nos animateurs.</p>
                             <p><b>Le principe :</b> &nbsp;faire la fête en se cultivant n'est pas incompatible !</p>
                         </div>
-                    </div>  
+                    </div>
 
                     <div class="uk-margin">
                         <div class="container-info">
@@ -171,15 +171,15 @@
                             <p>Précisez également <b>quelle(s) atelier(s)</b> aimeriez-vous retrouver à votre événement. </p>
                             <p><b>Nous vous contacterons prochainement et vous ferons parvenir un devis.</b></p>
                         </div>
-                    </div> 
-                    
+                    </div>
+
                     <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
-                        
+
                         <div>
                             <div class="uk-margin">
                                 <label class="uk-form-label">Date(s)</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" type="tel" name="date" placeholder="Du jj.mm.aaaaa au jj.mm.aaaaa"/>
+                                    <input class="uk-input" type="text" name="date-animation" placeholder="Du jj.mm.aaaaa au jj.mm.aaaaa"/>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label">Durée(s)</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" type="tel" name="duree" placeholder="De ..h.. à ..h.. et de ..h.. à ..h.."/>
+                                    <input class="uk-input" type="text" name="duree-animation" placeholder="De ..h.. à ..h.. et de ..h.. à ..h.."/>
                                 </div>
                             </div>
                         </div>
@@ -199,16 +199,16 @@
                     <div class="uk-margin">
                         <label class="uk-form-label">Description de votre/vos atelier(s) :</label>
                         <div class="uk-form-controls">
-                            <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                            <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea" name="description-animation"></textarea>
                         </div>
                     </div>
-                    
+
                 </div>
-                    
+
                 </div>
 
                 <div x-show="FormChoixD === 'D-3'">
-                    
+
                     <div class="uk-margin">
                         <div class="container-info-important">
                             <p><b>Information :</b></p>
@@ -216,8 +216,8 @@
                         </div>
                     </div>
 
-                </div>   
-             
+                </div>
+
                 <!-- Fin des déclaratiosn de champs devant être appelés dynamiquement -->
 
             </div>
@@ -227,7 +227,7 @@
         <div x-show="etape === 2">
 
             <div class="uk-card uk-card-default uk-card-body">
-            
+
                 <div class="uk-margin">
                     <label class="uk-form-label">Organisation</label>
                     <div class="uk-form-controls">
@@ -237,19 +237,19 @@
 
                 <div class="uk-grid-small uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid>
 
-                    <div>    
+                    <div>
                         <div class="uk-margin">
                             <label class="uk-form-label">Titre</label>
                             <div class="uk-form-controls">
                                 <select class="uk-select" name="titre">
-                                    <option value="choix">- Faites votre choix -</option>
-                                    <option value="monsieur">Monsieur</option>
-                                    <option value="madame">Madame</option>
+                                    <option value="">- Faites votre choix -</option>
+                                    <option value="Monsieur">Monsieur</option>
+                                    <option value="Madame">Madame</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div>
                         <div class="uk-margin">
                             <label class="uk-form-label star">Prénom</label>
@@ -258,8 +258,8 @@
                             </div>
                         </div>
                     </div>
-    
-                    <div>         
+
+                    <div>
                         <div class="uk-margin">
                             <label class="uk-form-label star">Nom</label>
                             <div class="uk-form-controls">
@@ -267,21 +267,21 @@
                             </div>
                         </div>
                     </div>
-                        
-                </div> 
+
+                </div>
 
             </div>
 
             <div class="uk-card uk-card-default uk-card-body">
-    
+
                 <div class="uk-margin">
                     <label class="uk-form-label">Adresse</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" type="text" name="adresse"/>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-2@s" uk-grid>
 
                     <div class="uk-width-auto@s">
@@ -292,7 +292,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="uk-width-expand@s">
                         <div class="uk-margin">
                             <label class="uk-form-label">Ville</label>
@@ -303,60 +303,60 @@
                     </div>
 
                 </div>
-    
+
                 <div class="uk-margin">
                     <label class="uk-form-label">Pays</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" type="text" name="pays"/>
                     </div>
-                </div>  
+                </div>
 
             </div>
 
             <div class="uk-card uk-card-default uk-card-body">
-            
+
                 <div class="uk-margin">
                     <label class="uk-form-label">Téléphone</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" type="tel" name="telephone"/>
                     </div>
                 </div>
-            
+
                 <div class="uk-margin">
                     <label class="uk-form-label star">Email</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" type="email" name="email" required/>
                     </div>
                 </div>
-                
+
                 <div class="uk-margin">
                     <label class="uk-form-label">Site Web</label>
                     <div class="uk-form-controls">
                         <input class="uk-input" type="Site Web" name="siteweb"/>
                     </div>
                 </div>
-             
+
             </div>
 
             <div class="uk-card uk-card-default uk-card-body">
-          
+
                 <div class="uk-margin">
                     <label class="uk-form-label">Message</label>
                     <div class="uk-form-controls">
-                        <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea"></textarea>
+                        <textarea class="uk-textarea" rows="10" placeholder="Votre message..." aria-label="Textarea" name="message"></textarea>
                     </div>
                 </div>
 
-            </div> 
+            </div>
 
             <br><br>
 
             <div class="uk-text-center">
 
-                <button class="uk-button button-submit uk-margin-bottom" type="button" onclick="onSubmitForm()">Envoyer</button>
+                <button class="uk-button button-submit uk-margin-bottom" type="submit" onclick="onSubmitForm()">Envoyer</button>
 
             </div>
-            
+
         </div>
 
         <div class="uk-text-center">
@@ -391,6 +391,11 @@
             });
         });
     }
+
+    // CONTROLER SI LE SCRIPT EST VALABLE POUR AVOIR UN CHAMPS ”DATE” DYNAMIQUE !
+    var datepicker = UIkit.datepicker('#datepicker', {
+        format: 'DD.MM.YYYY'
+    });
 </script>
 
 </body>
