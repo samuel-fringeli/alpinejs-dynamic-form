@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire - Faire appel à nos services</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/css/uikit.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <link rel="stylesheet" href="../00-general/formulaire.css"/>
     <script src="https://www.google.com/recaptcha/api.js?render=6LeYVU0lAAAAALIIobEnkBYhnebQvgPhA6EMZuaG"></script>
     <style>
@@ -77,7 +78,7 @@
                                 <div class="uk-margin">
                                     <label class="uk-form-label">Quel jour souhaiteriez-vous participer à une formation ?</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="datepicker" type="text" name="date-formation-1" placeholder="jj.mm.aaaaa"/>
+                                        <input class="uk-input" type="text" id="datepicker1" name="date-formation-1" placeholder="jj.mm.aaaa"/>
                                     </div>
                                 </div>
 
@@ -179,7 +180,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label">Date(s)</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" type="text" name="date-animation" placeholder="Du jj.mm.aaaaa au jj.mm.aaaaa"/>
+                                    <input class="uk-input" type="text" id="datepicker2" name="date-animation" placeholder="Du jj.mm.aaaa au jj.mm.aaaa"/>
                                 </div>
                             </div>
                         </div>
@@ -375,6 +376,7 @@
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit-icons.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <script>
     function onSubmitForm() {
         grecaptcha.ready(function () {
@@ -392,10 +394,15 @@
         });
     }
 
-    // CONTROLER SI LE SCRIPT EST VALABLE POUR AVOIR UN CHAMPS ”DATE” DYNAMIQUE !
-    var datepicker = UIkit.datepicker('#datepicker', {
-        format: 'DD.MM.YYYY'
-    });
+    function toString(date) {
+      const day = ('0' + date.getDate()).slice(-2);
+      const month = ('0' + (date.getMonth() + 1)).slice(-2);
+      const year = date.getFullYear();
+      return day + '.' + month + '.' + year;
+    }
+
+    let picker1 = new Pikaday({ field: document.getElementById('datepicker1'), toString: toString });
+    let picker2 = new Pikaday({ field: document.getElementById('datepicker2'), toString: toString });
 </script>
 
 </body>
