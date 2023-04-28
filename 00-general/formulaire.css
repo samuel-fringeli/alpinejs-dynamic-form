@@ -44,10 +44,25 @@ input, textarea {
     margin-bottom: 20px !important;
 }
 
-img {
+.spacing-left {
+    margin-left: 50px !important;
+}
+
+.spacing-right {
+    margin-right: 50px !important;
+}
+
+.qr {
     width: 150px;
     height: auto;
     border: solid 1px #ccc;
+}
+
+.logo {
+    margin-bottom: -30px;
+    width: 300px;
+    height: auto;
+    border: none;
 }
 
 .container-info, .container-info-important, .container-info-not-available {
@@ -70,6 +85,9 @@ img {
 
 .button-navigation, .button-link {
     margin-top: 30px;
+}
+
+.button-navigation, .button-link, .button-upload {
     color: #fff;
     background: #1d5a88 ;
     background: -moz-linear-gradient(top, #1d5a88  20%, #10314a 100%) !important;
@@ -79,7 +97,7 @@ img {
     box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
-.button-navigation:hover, .button-link:hover {
+.button-navigation:hover, .button-link:hover, .button-upload:hover {
     color: #fff;
     background: #135b2b ;
     background: -moz-linear-gradient(top, #10314a  20%, #1d5a88 100%) !important;
